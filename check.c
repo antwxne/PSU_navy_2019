@@ -16,7 +16,7 @@ int valid(char *boat)
         return -1;
     if ((boat[0] >= 'A' && boat[0] <= 'H')
         || (boat[1] >= '1' && boat[1] <= '8'))
-               return 0;
+                return 0;
     else {
         my_printf("wrong position\n");
         return -1;
@@ -49,7 +49,7 @@ int check_line(char *boat)
 int take_colone(char *boat)
 {
     int i = 0;
-    
+
     if (boat[1] == '1')
         i = 2;
     if (boat[1] == '2')
@@ -74,7 +74,8 @@ int verif(char **boat)
     int line =  check_line(boat);
     int colo = take_clone(boat);
 
-    if (boat[line][colo] == '2' || boat[line][colo] == '3' || boat[line][colo] == '4' ||
+    if (boat[line][colo] == '2' || boat[line][colo] == '3' ||
+        boat[line][colo] == '4' ||
         boat[line][colo] == '5')
         return 0;
     else
