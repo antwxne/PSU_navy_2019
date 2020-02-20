@@ -10,6 +10,10 @@ SRC	= 	src/main.c		\
 		src/replace.c		\
 		src/read.c		\
 		src/error.c		\
+		src/toucher.c		\
+		src/check.c		\
+		src/get_next_line.c	\
+		src/get_intput.c	\
 
 OBJ	=	$(SRC:.c=.o)
 

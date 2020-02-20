@@ -6,6 +6,7 @@
 */
 
 #include <stdio.h>
+#include <navy.h>
 
 int valid(char *boat)
 {
@@ -18,7 +19,7 @@ int valid(char *boat)
         || (boat[1] >= '1' && boat[1] <= '8'))
                 return 0;
     else {
-        my_printf("wrong position\n");
+        my_putstr("wrong position\n");
         return -1;
     }
 }
@@ -67,17 +68,4 @@ int take_colone(char *boat)
     if (boat[1] == '8')
         i = 9;
     return i;
-}
-
-int verif(char **boat)
-{
-    int line =  check_line(boat);
-    int colo = take_clone(boat);
-
-    if (boat[line][colo] == '2' || boat[line][colo] == '3' ||
-        boat[line][colo] == '4' ||
-        boat[line][colo] == '5')
-        return 0;
-    else
-        return -1;
 }
