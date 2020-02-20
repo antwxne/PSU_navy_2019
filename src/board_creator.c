@@ -5,7 +5,7 @@
 ** board_creator
 */
 
-#include "navy.h"
+#include <navy.h>
 #include <stdlib.h>
 
 void display_board(char **board)

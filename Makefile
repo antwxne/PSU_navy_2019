@@ -6,7 +6,10 @@
 ##
 
 SRC	= 	src/main.c		\
-		src/board_creator.c
+		src/board_creator.c	\
+		src/replace.c		\
+		src/read.c		\
+		src/error.c		\
 
 OBJ	=	$(SRC:.c=.o)
 

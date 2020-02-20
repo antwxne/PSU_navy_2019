@@ -25,7 +25,7 @@ char *read_posi(char *filepath)
     size =  read(fd, buffer, 45);
     buffer[31] = 0;
     close(fd);
-    if (size > 32)
+    if (size > 31)
         return NULL;
     return buffer;
 }
@@ -57,7 +57,7 @@ int second_verification(char *buffer)
             fore += 1;
         if (buffer[i] == '5')
             five += 1;
-       }
+        }
     if (two == 1 && three == 1 && fore == 1 && five == 1)
         return 0;
     else
@@ -74,7 +74,7 @@ int three_verification(char *buffer)
 
     if (buffer[1] == ':' && buffer[4] == ':' &&
         buffer[9] == ':' && buffer[12] == ':' &&
-        buffer[17] == ':' && buffer[20] == ':'&&
+        buffer[17] == ':' && buffer[20] == ':' &&
         buffer[25] == ':' && buffer[28] == ':')
         return 0;
     else
@@ -85,7 +85,6 @@ int fore_verification(char *buffer)
 {
     int i = 2;
     int res = 0;
-    int result = 0;
 
     for (; i <= 26; i += 8) {
         if (buffer[i] == buffer[i + 3]) {
@@ -101,27 +100,5 @@ int fore_verification(char *buffer)
         else
             return -1;
     }
-    return 0;
-}
-
-int error(int ac, char **av)
-{
-    char *buffer;
-    int i = 1;
-    
-    if (ac == 3) {
-        i = 2;
-    }
-    if (read_posi(av[i]) == NULL)
-        return 84;
-    buffer = read_posi(av[i]);
-    if (first_verification(buffer) == -1)
-        return 84;
-    if (second_verification(buffer) == -1)
-        return 84;
-    if (three_verification(buffer) == -1)
-        return 84;
-    if (fore_verification(buffer) == -1)
-        return 84;
     return 0;
 }
