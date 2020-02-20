@@ -49,7 +49,6 @@ void get_mypid(void)
     while (i < 4) {
         pause();
         bin[i] = recep_sig + '0';
-        printf("i == %d\n", i);
         i++;
     }
     bin[4] = 0;
