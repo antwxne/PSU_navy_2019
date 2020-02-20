@@ -22,3 +22,4 @@ int my_strncmp(char const *s1, char const *s2);
 char *my_strncpy(char *dest, char const *src, int n);
 void my_printf(char *str, ...);
 void my_free_arr(char **arr, int start);
+int my_bitoi(char *bin);

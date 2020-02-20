@@ -21,7 +21,8 @@ SRC	=	my_getnbr.c		\
 		my_printf.c		\
 		bis_disp.c		\
 		number_base.c		\
-		my_free_arr.c
+		my_free_arr.c		\
+		binary_convert.c	\
 
 OBJ	=	$(SRC:.c=.o)
 
