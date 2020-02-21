@@ -13,7 +13,7 @@ char **toucher(char **boat, char *rd)
 {
     int line = check_line(rd);
     int colo = take_colone(rd);
-    
+
     if (boat[colo][line] != '.')
         boat[colo][line] = 'x';
     else if (boat[colo][line] == '.')
