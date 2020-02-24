@@ -7,14 +7,6 @@
 
 #include <stdio.h>
 
-int my_strlen(char *str)
-{
-    int i = 0;
-
-    for (; str[i] != 0; i++);
-    return (i);
-}
-
 char *clean_bin(char *bin)
 {
     int len = my_strlen(bin);
