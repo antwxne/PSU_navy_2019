@@ -12,11 +12,8 @@ int valid(char *boat)
 {
     int i = 0;
 
-    for (;boat[i] != '\0'; i++);
-    if (i != 2)
-        return -1;
     if ((boat[0] >= 'A' && boat[0] <= 'H')
-        || (boat[1] >= '1' && boat[1] <= '8'))
+        && (boat[1] >= '1' && boat[1] <= '8'))
                 return 0;
     else {
         my_putstr("wrong position\n");

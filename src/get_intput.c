@@ -7,6 +7,7 @@
 
 #include "navy.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static const char let[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
@@ -31,9 +32,11 @@ int *transform_input(char *input)
 
 char *cat_input(void)
 {
-    char *input;
-    int fd = 0;
+    char *input = NULL;
+    size_t getnext = 0;
 
-    input = get_next_line(fd);
+    my_putstr("attack: ");
+    if (getline(&input, &getnext, stdin) == -1)
+        return  NULL;
     return input;
 }
