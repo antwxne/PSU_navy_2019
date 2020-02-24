@@ -27,15 +27,3 @@ char *clean_bin(char *bin)
     }
     return (bin);
 }
-
-int main(int ac, char **av)
-{
-    char *bin;
-
-    if (ac == 2) {
-        bin = av[1];
-        bin = clean_bin(bin);
-        printf("binary = %s\n", bin);
-    }
-    return (0);
-}
