@@ -5,6 +5,8 @@
 ** binary convert
 */
 
+int my_strlen(char *str);
+
 int my_btoi(char *bin)
 {
     int len = my_strlen(bin);

@@ -25,10 +25,6 @@ LDFLAGS	=	-L./lib -lmy
 
 NAME	=	navy
 
-SRC_TESTS	=
-
-FLAGS_TESTS	=	-lcriterion --coverage
-
 NAME_TESTS	=	unit_tests
 
 CC	=	gcc
@@ -52,7 +48,7 @@ fclean:	clean
 
 tests_run:
 	make -C lib/my/
-	$(CC) -o $(NAME_TESTS) $(SRC_TESTS) $(CPPFLAGS) $(FLAGS_TESTS) $(LDFLAGS)
+	$(CC) -o $(NAME_TESTS) $(CPPFLAGS) $(SRC_TESTS) $(LDFLAGS)
 	./$(NAME_TESTS)
 
 re: fclean all
