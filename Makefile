@@ -14,6 +14,7 @@ SRC	= 	src/main.c		\
 		src/check.c		\
 		src/get_next_line.c	\
 		src/get_intput.c	\
+		src/finall_map.c	\
 
 OBJ	=	$(SRC:.c=.o)
 
