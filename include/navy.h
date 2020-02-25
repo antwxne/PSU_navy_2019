@@ -25,7 +25,7 @@ int take_colone(char *boat);
 int check_line(char *boat);
 int valid(char *boat);
 int error(int ac, char **av, char *buffer);
-char **toucher(char **boat, char *rd);
+char **toucher(char **boat, int *pos);
 int loose(char **boat, char *rd);
 char *cat_input(void);
 char *get_next_line(int fd);

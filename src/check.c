@@ -21,7 +21,7 @@ int valid(char *boat)
     }
 }
 
-int check_line(char *boat)
+int take_colone(char *boat)
 {
     int i = 0;
 
@@ -44,7 +44,7 @@ int check_line(char *boat)
     return i;
 }
 
-int take_colone(char *boat)
+int take_line(char *boat)
 {
     int i = 0;
 
