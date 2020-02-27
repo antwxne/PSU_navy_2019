@@ -5,24 +5,26 @@
 ## makefile
 ##
 
-SRC	=	my_getnbr.c		\
-		my_isneg.c		\
+SRC	=	my_getnbr.c			\
+		my_isneg.c			\
 		my_putchar.c		\
 		my_put_nbr.c		\
-		my_putstr.c		\
-		my_revstr.c		\
-		my_strcat.c		\
-		my_strcmp.c		\
-		my_strcpy.c		\
-		my_strlen.c		\
+		my_putstr.c			\
+		my_revstr.c			\
+		my_strcat.c			\
+		my_strcmp.c			\
+		my_strcpy.c			\
+		my_strlen.c			\
 		my_strncmp.c		\
-		my_swap.c		\
+		my_swap.c			\
 		sum_stdarg.c		\
-		my_printf.c		\
-		bis_disp.c		\
+		my_printf.c			\
+		bis_disp.c			\
 		number_base.c		\
 		my_free_arr.c		\
 		binary_convert.c	\
+		clean_bin.c 		\
+		my_clean_str.c 		\
 
 OBJ	=	$(SRC:.c=.o)
 
