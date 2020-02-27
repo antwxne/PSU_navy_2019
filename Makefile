@@ -5,16 +5,17 @@
 ## makefile
 ##
 
-SRC	= 	src/main.c		\
-		src/board_creator.c	\
-		src/replace.c		\
-		src/read.c		\
-		src/error.c		\
-		src/toucher.c		\
-		src/check.c		\
-		src/get_next_line.c	\
+SRC	= 	src/board_creator.c	\
+		src/check.c			\
+		src/connect.c 		\
+		src/error.c			\
+		src/game_loop.c 	\
 		src/get_intput.c	\
-		src/finall_map.c	\
+		src/loop.c 			\
+		src/main.c			\
+		src/read.c			\
+		src/replace.c		\
+		src/toucher.c		\
 
 OBJ	=	$(SRC:.c=.o)
 
