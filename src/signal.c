@@ -11,9 +11,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-int recep_sig = 0;
-
-static void handler(int sig, siginfo_t *info, void *ucontext)
+static void handler(int sig, siginfo_t *info)
 {
     if (sig == SIGUSR1)
         recep_sig = 1;
@@ -22,23 +20,10 @@ static void handler(int sig, siginfo_t *info, void *ucontext)
     kill(info->si_pid, SIGUSR1);
 }
 
-static void handler_return(int sig, siginfo_t *info, void *ucontext)
+static void handler_return(int sig, siginfo_t *info)
 {
     if (sig == SIGUSR1)
         recep_sig += 1;
-}
-
-char *clean_bin(char *bin)
-{
-    int len = my_strlen(bin);
-
-    for (; len >= 0; len--) {
-        if (bin[len] == '0' && bin[len - 1] == '1') {
-            bin[len] = 0;
-            return (bin);
-        }
-    }
-    return (bin);
 }
 
 int get_signal(void)

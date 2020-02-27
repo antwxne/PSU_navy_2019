@@ -45,7 +45,7 @@ int second_verification(char *buffer)
 {
     int two = 0;
     int three = 0;
-    int fore = 0;
+    int four = 0;
     int five = 0;
 
     for (int i = 0; i <= 24; i += 8) {
@@ -54,11 +54,11 @@ int second_verification(char *buffer)
         if (buffer[i] == '3')
             three += 1;
         if (buffer[i] == '4')
-            fore += 1;
+            four += 1;
         if (buffer[i] == '5')
             five += 1;
-        }
-    if (two == 1 && three == 1 && fore == 1 && five == 1)
+    }
+    if (two == 1 && three == 1 && four == 1 && five == 1)
         return 0;
     else
         return -1;
@@ -81,7 +81,7 @@ int three_verification(char *buffer)
         return -1;
 }
 
-int fore_verification(char *buffer)
+int four_verification(char *buffer)
 {
     int i = 2;
     int res = 0;

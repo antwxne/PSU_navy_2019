@@ -5,15 +5,15 @@
 ** tocher
 */
 
-#include "navy.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include "navy.h"
 
 char **toucher(char **boat, int *pos)
 {
     if (boat[pos[0]][pos[1]] != '.')
-        boat[pos[0]][pos[1]]= 'x';
+        boat[pos[0]][pos[1]] = 'x';
     else if (boat[pos[0]][pos[1]] == '.')
         boat[pos[0]][pos[1]] = 'o';
     return (boat);

@@ -27,7 +27,7 @@ int error(int ac, char **av, char *buffer)
         return 84;
     if (three_verification(buffer) == -1)
         return 84;
-    if (fore_verification(buffer) == -1)
+    if (four_verification(buffer) == -1)
         return 84;
     return 0;
 }

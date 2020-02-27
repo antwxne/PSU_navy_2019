@@ -10,8 +10,6 @@
 
 int valid(char *boat)
 {
-    int i = 0;
-
     if ((boat[0] >= 'A' && boat[0] <= 'H')
         && (boat[1] >= '1' && boat[1] <= '8'))
                 return 0;
