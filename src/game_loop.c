@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include "navy.h"
+#include "my.h"
 
 static char **set_board(char **board, char *map)
 {
@@ -24,10 +25,18 @@ int game_loop_2(char *map, int pid)
 {
     char **board = set_board(create_board(), map);
     char **enemy = create_board();
-    int *pos = malloc(sizeof(int)*2);
-    int return_value = loop(board, enemy, pos, init_connection(pid));
+    int **pos = malloc(sizeof(int *)*3);
+    int return_value;
 
-    free(pos);
+    if (pos == NULL)
+        return (84);
+    for (int i = 0; i <= 2; i++) {
+        pos[i] = malloc(sizeof(int)*2);
+        if (pos[i] == NULL)
+            return (84);
+    }
+    return_value = loop_p2(board, enemy, pos, init_connection(pid));
+    // free(pos);
     my_free_arr(board, 2);
     my_free_arr(enemy, 2);
     return (return_value);
@@ -37,10 +46,18 @@ int game_loop(char *map)
 {
     char **board = set_board(create_board(), map);
     char **enemy = create_board();
-    int *pos = malloc(sizeof(int)*2);
-    int return_value = loop(board, enemy, pos, wait_connection());
+    int **pos = malloc(sizeof(int *)*3);
+    int return_value;
 
-    free(pos);
+    if (pos == NULL)
+        return (84);
+    for (int i = 0; i <= 2; i++) {
+        pos[i] = malloc(sizeof(int)*2);
+        if (pos[i] == NULL)
+            return (84);
+    }
+    return_value = loop_p1(board, enemy, pos, wait_connection());
+    // free(pos);
     my_free_arr(board, 2);
     my_free_arr(enemy, 2);
     return (return_value);

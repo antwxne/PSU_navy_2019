@@ -5,8 +5,6 @@
 ** clean binary
 */
 
-#include <stdio.h>
-
 int my_strlen(char const *str);
 
 char *clean_bin(char *bin)

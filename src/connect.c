@@ -5,14 +5,14 @@
 ** connect
 */
 
-#include <stdio.h>
 #include <signal.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include "navy.h"
+#include "my.h"
 
-static void handler_connect(int sig, siginfo_t *info, void *ucontext)
+static void handler_connect(int sig, siginfo_t *info)
 {
     if (sig == SIGUSR1) {
         recep_sig = info->si_pid;

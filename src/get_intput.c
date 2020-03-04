@@ -5,9 +5,10 @@
 ** tkt
 */
 
-#include "navy.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "navy.h"
+#include "my.h"
 
 static const char let[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
@@ -35,8 +36,10 @@ char *cat_input(void)
     char *input = NULL;
     size_t getnext = 0;
 
-    my_putstr("attack: ");
-    if (getline(&input, &getnext, stdin) == -1)
+    my_putstr("\nattack: ");
+    if (getline(&input, &getnext, stdin) == -1) {
+        printf("j'ai dit non\n");
         return  NULL;
+    }
     return input;
 }

@@ -1,9 +1,12 @@
 /*
-** EPITECH PROJECT, 2019
-** my.h
+** EPITECH PROJECT, 2020
+** PSU_navy_2019
 ** File description:
-** azertyu
+** my
 */
+
+#ifndef MY_H_
+#define MY_H_
 
 void my_swap(int *a, int *b);
 int my_getnbr(char const *str);
@@ -22,4 +25,7 @@ int my_strncmp(char const *s1, char const *s2);
 char *my_strncpy(char *dest, char const *src, int n);
 void my_printf(char *str, ...);
 void my_free_arr(char **arr, int start);
-int my_bitoi(char *bin);
+int my_btoi(char *bin);
+char *clean_bin(char *bin);
+
+#endif /* !MY_H_ */

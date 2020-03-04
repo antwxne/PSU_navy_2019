@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int hori(char *buffer, int i)
+static int hori(char *buffer, int i)
 {
     int x = 0;
 
@@ -31,7 +31,7 @@ int hori(char *buffer, int i)
     return x;
 }
 
-int ifletter(char *buffer, int k)
+static int ifletter(char *buffer, int k)
 {
     int bis = 0;
     int x = 0;
@@ -45,7 +45,7 @@ int ifletter(char *buffer, int k)
         return 0;
 }
 
-int verti(char *buffer, int i)
+static int verti(char *buffer, int i)
 {
     int y = 0;
 
