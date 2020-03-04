@@ -37,9 +37,7 @@ char *cat_input(void)
     size_t getnext = 0;
 
     my_putstr("\nattack: ");
-    if (getline(&input, &getnext, stdin) == -1) {
-        printf("j'ai dit non\n");
+    if (getline(&input, &getnext, stdin) == -1)
         return  NULL;
-    }
     return input;
 }

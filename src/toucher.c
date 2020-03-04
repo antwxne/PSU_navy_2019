@@ -25,7 +25,7 @@ char **update_my_board(char **boat, int *pos)
     return (boat);
 }
 
-char **update_enemy_board(char **enemy, bool hit, char *pos)
+char **update_enemy_board(char **enemy, bool hit, int *pos)
 {
     int i = 0;
 
@@ -33,20 +33,8 @@ char **update_enemy_board(char **enemy, bool hit, char *pos)
         if (let[i] == pos[0])
             break;
     if (hit == true)
-        enemy[pos[1] - '0'+1][cols[i]] = 'x';
+        enemy[pos[1]+1][cols[pos[0]-1]] = 'x';
     else
-        enemy[pos[1] - '0'][cols[i]] = 'o';
+        enemy[pos[1]+1][cols[pos[0]-1]] = 'o';
     return (enemy);
-}
-
-int check_hit(char **board, int *pos)
-{
-    int y = pos[1];
-    int x = cols[pos[0]];
-
-    if ((board[y][x] >= '2' && board[y][x] <= '5') || board[y][x] == 'x')
-        return (1);
-    if (board[y][x] == '.' || board[y][x] == 'o')
-        return (0);
-    return (-1);
 }

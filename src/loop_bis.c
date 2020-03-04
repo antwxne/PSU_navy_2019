@@ -10,26 +10,19 @@
 #include "navy.h"
 #include "my.h"
 
-static void hit(char **board, char **enemy, char *pos, bool check)
+static int loose(char **boat)
 {
-    printf("hit my board\n");
-    enemy = update_enemy_board(board, check, pos);
-    display_board(board);
-    my_putchar('\n');
-    display_board(enemy);
-}
+    int nb_hit = 0;
+    int y = 2;
 
-static int loose(char **boat, char *rd)
-{
-    int cols = take_colone(rd);
-    int rows = take_line(rd);
-    static int lose = 0;
-
-    if (boat[rows][cols] != '.')
-        lose += 1;
-    if (lose == 14)
-        return -1;
-    return 0;
+    for (; boat[y] != NULL; y++)
+        for (int x = 0; boat[y][x] != 0; x++)
+            if (boat[y][x] == 'x')
+                nb_hit += 1;
+    if (nb_hit == 14)
+        return (-1);
+    else
+        return 0;
 }
 
 int second_loop(int **pos, char *rd, char ***board, char ***enemy)
@@ -38,10 +31,11 @@ int second_loop(int **pos, char *rd, char ***board, char ***enemy)
 
     pos[0] = transform_input(rd);
     fire = send_all(pos[0], pos[2][0]);
-    enemy[0] = update_enemy_board(enemy[0], fire, rd);
-    if (loose(enemy[0], rd) == -1)
-        return (enemy);
-    if (loose(board[0], rd) == -1)
+    *enemy = update_enemy_board(*enemy, fire, pos[0]);
+    usleep(10000);
+    if (loose(enemy[0]) == -1)
+        return (other);
+    if (loose(board[0]) == -1)
         return (you);
     return (0);
 }

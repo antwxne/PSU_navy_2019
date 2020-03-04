@@ -15,7 +15,7 @@ int recep_sig;
 typedef enum player {
     eof,
     you,
-    enemy
+    other
 } player_e;
 
 void display_board(char **board);
@@ -23,7 +23,7 @@ char **create_board(void);
 int valid(char *boat);
 int take_colone(char *boat);
 int take_line(char *boat);
-bool send_all(int *pos, int pid);
+int send_all(int *pos, int pid);
 char **recep_all(char **board, int *pos, int other_pid);
 int init_connection(int pid);
 int wait_connection(void);
@@ -43,7 +43,7 @@ int four_verification(char *buffer);
 char **replace_map(char *buffer, char **boat, int k);
 int get_signal(void);
 char **update_my_board(char **boat, int *pos);
-char **update_enemy_board(char **enemy, bool hit, char *pos);
+char **update_enemy_board(char **enemy, bool hit, int *pos);
 void my_send_sig(int data, int pid);
 int check_hit(char **board, int *pos);
 

@@ -22,9 +22,10 @@ static void handler_connect(int sig, siginfo_t *info)
 
 int init_connection(int pid)
 {
-    struct sigaction act;
+    struct sigaction act = {0};
 
     my_printf("my_pid:  %d\n", getpid());
+    sigemptyset(&act.sa_mask);
     act.sa_flags = SA_SIGINFO;
     act.sa_sigaction = &handler_connect;
     sigaction(SIGUSR2, &act, NULL);
@@ -36,7 +37,7 @@ int init_connection(int pid)
 
 int wait_connection(void)
 {
-    struct sigaction act;
+    struct sigaction act = {0};
 
     my_printf("my_pid:  %d\nwaiting for enemy connection...\n", getpid());
     act.sa_flags = SA_SIGINFO;

@@ -6,6 +6,7 @@
 */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include "navy.h"
 #include "my.h"
 
@@ -60,9 +61,8 @@ int loop_p2(char **board, char **enemy, int **pos, int pid)
         waiting_action(board, pos);
         usleep(1000);
         rd = cat_input();
-        if (rd == NULL) {
+        if (rd == NULL)
             return eof;
-        }
         while (valid(rd) == -1) {
             rd = cat_input();
             if (rd == NULL)

@@ -29,7 +29,7 @@ static void handler_return(int sig, void *info, void *ucontext)
 
 int get_signal(void)
 {
-    struct sigaction act;
+    struct sigaction act = {0};
     int i = 0;
     char *bin = malloc(sizeof(char)*5);
 
@@ -50,10 +50,11 @@ int get_signal(void)
 void my_send_sig(int data, int pid)
 {
     static int error = -1;
-    struct sigaction act;
+    struct sigaction act = {0};
 
     act.sa_flags = SA_SIGINFO;
     act.sa_sigaction = &handler_return;
+    sigemptyset(&act.sa_mask);
     recep_sig = 0;
     sigaction(SIGUSR1, &act, NULL);
     for (; recep_sig <= 3;) {
