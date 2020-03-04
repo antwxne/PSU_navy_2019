@@ -14,7 +14,6 @@
 #include "my.h"
 
 static const char let[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
-static const int cols[] = {2, 4, 6, 8, 10, 12, 14, 16};
 
 static void handler(int sig, siginfo_t *info, void *ncontext)
 {
@@ -26,6 +25,9 @@ static void handler(int sig, siginfo_t *info, void *ncontext)
     kill(info->si_pid, SIGUSR1);
 }
 
+static void handler2(int sig)
+{}
+
 static void display_hit(int *pos, int hit)
 {
     my_printf("%c%c:", let[pos[0]-1], pos[1] + '0');
@@ -33,16 +35,6 @@ static void display_hit(int *pos, int hit)
         my_putstr("  hit\n");
     else
         my_putstr("  missed\n");
-}
-
-int check_hit(char **board, int *pos)
-{
-    if (board[pos[0]-1][cols[pos[0]-1]] >= '2' &&
-        board[pos[0]-1][cols[pos[0]-1]] <= '5')
-        return (1);
-    else
-        return (-1);
-    return (0);
 }
 
 int send_all(int *pos, int pid)
@@ -78,7 +70,7 @@ char **recep_all(char **board, int *pos, int other_pid)
         display_hit(pos, 0);
         kill(other_pid, SIGUSR2);
     }
-    pause();
+    signal(SIGUSR1, &handler2);
     board = update_my_board(board, pos);
     return (board);
 }

@@ -31,13 +31,13 @@ int *transform_input(char *input)
     return (result);
 }
 
-char *cat_input(void)
+int cat_input(char **input)
 {
-    char *input = NULL;
+    *input = NULL;
     size_t getnext = 0;
 
     my_putstr("\nattack: ");
-    if (getline(&input, &getnext, stdin) == -1)
-        return  NULL;
-    return input;
+    if (getline(input, &getnext, stdin) == -1)
+        return  -1;
+    return 0;
 }

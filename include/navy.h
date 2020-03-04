@@ -31,7 +31,7 @@ int error(int ac, char **av, char *buffer);
 int game_loop_2(char *map, int pid);
 int game_loop(char *map);
 int *transform_input(char *input);
-char *cat_input(void);
+int cat_input(char **input);
 int second_loop(int **pos, char *rd, char ***board, char ***enemy);
 int loop_p1(char **board, char **enemy, int **pos, int pid);
 int loop_p2(char **board, char **enemy, int **pos, int pid);
@@ -43,7 +43,7 @@ int four_verification(char *buffer);
 char **replace_map(char *buffer, char **boat, int k);
 int get_signal(void);
 char **update_my_board(char **boat, int *pos);
-char **update_enemy_board(char **enemy, bool hit, int *pos);
+char **update_enemy_board(char **enemy, int hit, int *pos);
 void my_send_sig(int data, int pid);
 int check_hit(char **board, int *pos);
 

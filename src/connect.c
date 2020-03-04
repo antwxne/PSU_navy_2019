@@ -31,7 +31,7 @@ int init_connection(int pid)
     sigaction(SIGUSR2, &act, NULL);
     kill(pid, SIGUSR1);
     pause();
-    my_putstr("successfully connected\n\n");
+    my_putstr("successfully connected\n");
     return (pid);
 }
 
@@ -44,6 +44,6 @@ int wait_connection(void)
     act.sa_sigaction = &handler_connect;
     sigaction(SIGUSR1, &act, NULL);
     pause();
-    my_putstr("\nenemy connected\n\n");
+    my_putstr("\nenemy connected\n");
     return (recep_sig);
 }

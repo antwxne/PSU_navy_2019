@@ -5,7 +5,6 @@
 ** loop_bis
 */
 
-#include <stdbool.h>
 #include <stdlib.h>
 #include "navy.h"
 #include "my.h"
@@ -27,7 +26,7 @@ static int loose(char **boat)
 
 int second_loop(int **pos, char *rd, char ***board, char ***enemy)
 {
-    bool fire;
+    int fire;
 
     pos[0] = transform_input(rd);
     fire = send_all(pos[0], pos[2][0]);

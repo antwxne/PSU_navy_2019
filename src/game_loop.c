@@ -36,7 +36,7 @@ int game_loop_2(char *map, int pid)
             return (84);
     }
     return_value = loop_p2(board, enemy, pos, init_connection(pid));
-    // free(pos);
+    free(pos);
     my_free_arr(board, 2);
     my_free_arr(enemy, 2);
     return (return_value);
