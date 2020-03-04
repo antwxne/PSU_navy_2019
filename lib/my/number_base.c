@@ -5,9 +5,6 @@
 ** display int number into base number
 */
 
-#include <criterion/criterion.h>
-#include <criterion/redirect.h>
-
 void redirect_all_std(void);
 
 void my_putchar(char c);

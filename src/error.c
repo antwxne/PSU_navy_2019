@@ -5,8 +5,8 @@
 ** error
 */
 
-#include "navy.h"
 #include <stddef.h>
+#include "navy.h"
 
 int error(int ac, char **av, char *buffer)
 {

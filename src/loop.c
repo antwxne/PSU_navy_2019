@@ -5,54 +5,77 @@
 ** set_board
 */
 
+#include <stdlib.h>
+#include <unistd.h>
 #include "navy.h"
+#include "my.h"
 
 static void first_display(char **board, char **enemy)
 {
-    my_putstr("my positions:\n");
+    my_putstr("\nmy positions:\n");
     display_board(board);
     my_putchar('\n');
     my_putstr("enemy’s positions:\n");
     display_board(enemy);
-    my_putchar('\n');
 }
 
-static void hit(char **board, char **enemy, int *pos)
+static char **waiting_action(char **board, int **pos)
 {
-    enemy = toucher(board, pos);
-    display_board(board);
-    my_putchar('\n');
-    display_board(enemy);
+    my_putstr("\nwaiting for enemy's attack...\n");
+    board = recep_all(board, pos[1], pos[2][0]);
+    return (board);
 }
 
-static int check_loose(char **board)
+static int input(char **rd)
 {
-    int y = 2;
+    if (cat_input(rd) == -1) {
+        free(*rd);
+        return eof;
+    }
+    while (valid(*rd) == -1) {
+        free(*rd);
+        cat_input(rd);
+        if (*rd == NULL)
+            return eof;
+        }
+    return (1);
+}
 
-    for (; board[y] != NULL; y++)
-        for (int x = 2; board[y][x] != 0; x++)
-            if (board[y][x] >= '2' && board[y][x] <= '5')
-                return (1);
+int loop_p1(char **board, char **enemy, int **pos, int pid)
+{
+    char *rd = NULL;
+    int ret = 0;
+
+    pos[2][0] = pid;
+    while (1) {
+        first_display(board, enemy);
+        if (input(&rd) == eof)
+            return (eof);
+        ret = second_loop(pos, rd, &board, &enemy);
+        free(rd);
+        if (ret != 0)
+            return (ret);
+        waiting_action(board, pos);
+    }
     return (0);
 }
 
-int loop(char **board, char **enemy, int *pos, int pid)
+int loop_p2(char **board, char **enemy, int **pos, int pid)
 {
     char *rd = NULL;
+    int ret = 0;
 
-    first_display(board, enemy);
-    while (check_loose(board)) {
-        rd = cat_input();
-        if (rd == NULL)
-            return eof;
-        while (valid(rd) == -1) {
-            rd = cat_input();
-            if (rd == NULL)
-                return eof;
-        }
-        pos[0] = take_line(rd);
-        pos[1] = take_colone(rd);
-        hit(board, enemy, pos);
+    pos[2][0] = pid;
+    while (1) {
+        first_display(board, enemy);
+        waiting_action(board, pos);
+        usleep(10000);
+        if (input(&rd) == eof)
+            return (eof);
+        ret = second_loop(pos, rd, &board, &enemy);
+        free(rd);
+        if (ret != 0)
+            return (ret);
     }
     return (0);
 }

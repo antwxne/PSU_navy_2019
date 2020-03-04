@@ -5,8 +5,8 @@
 ** check
 */
 
-#include <stdio.h>
-#include <navy.h>
+#include "navy.h"
+#include "my.h"
 
 int valid(char *boat)
 {
