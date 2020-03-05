@@ -6,10 +6,11 @@
 */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include "navy.h"
 #include "my.h"
 
-static int loose(char **boat)
+int loose(char **boat)
 {
     int nb_hit = 0;
     int y = 2;
@@ -24,7 +25,7 @@ static int loose(char **boat)
         return 0;
 }
 
-int second_loop(int **pos, char *rd, char ***board, char ***enemy)
+int second_loop(int **pos, char *rd, char ***enemy)
 {
     int fire;
 
@@ -32,9 +33,8 @@ int second_loop(int **pos, char *rd, char ***board, char ***enemy)
     fire = send_all(pos[0], pos[2][0]);
     *enemy = update_enemy_board(*enemy, fire, pos[0]);
     usleep(10000);
-    if (loose(enemy[0]) == -1)
+    free(rd);
+    if (loose(*enemy) == -1)
         return (other);
-    if (loose(board[0]) == -1)
-        return (you);
     return (0);
 }

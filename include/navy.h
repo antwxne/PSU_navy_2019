@@ -13,7 +13,6 @@
 int recep_sig;
 
 typedef enum player {
-    eof,
     you,
     other
 } player_e;
@@ -32,7 +31,7 @@ int game_loop_2(char *map, int pid);
 int game_loop(char *map);
 int *transform_input(char *input);
 int cat_input(char **input);
-int second_loop(int **pos, char *rd, char ***board, char ***enemy);
+int second_loop(int **pos, char *rd, char ***enemy);
 int loop_p1(char **board, char **enemy, int **pos, int pid);
 int loop_p2(char **board, char **enemy, int **pos, int pid);
 char *read_posi(char *filepath);
@@ -46,5 +45,6 @@ char **update_my_board(char **boat, int *pos);
 char **update_enemy_board(char **enemy, int hit, int *pos);
 void my_send_sig(int data, int pid);
 int check_hit(char **board, int *pos);
+int loose(char **boat);
 
 #endif /* !NAVY_H_ */
