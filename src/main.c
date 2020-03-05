@@ -5,6 +5,7 @@
 ** main
 */
 
+#include <stdlib.h>
 #include "navy.h"
 #include "my.h"
 
