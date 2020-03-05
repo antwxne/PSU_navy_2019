@@ -24,8 +24,7 @@ char *read_posi(char *filepath)
     size =  read(fd, buffer, 45);
     buffer[31] = 0;
     close(fd);
-    printf("size == %d\n", size);
-    if (size > 32 && size < 31)
+    if (size > 32 || size < 31)
         return NULL;
     return buffer;
 }
