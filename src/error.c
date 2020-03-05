@@ -10,24 +10,17 @@
 
 int error(int ac, char **av, char *buffer)
 {
-    int i = 0;
-
-    if (ac == 2)
-        i = 1;
-    else if (ac == 3)
-        i = 2;
-    else
-        return 84;
-    if (read_posi(av[i]) == NULL)
-        return 84;
-    buffer = read_posi(av[i]);
+    if (ac < 2 && ac > 3)
+        return (84);
+    if (buffer == NULL)
+        return (84);
     if (first_verification(buffer) == -1)
-        return 84;
+        return (84);
     if (second_verification(buffer) == -1)
-        return 84;
+        return (84);
     if (three_verification(buffer) == -1)
-        return 84;
+        return (84);
     if (four_verification(buffer) == -1)
-        return 84;
-    return 0;
+        return (84);
+    return (0);
 }
