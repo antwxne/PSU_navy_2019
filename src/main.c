@@ -13,8 +13,10 @@ int main(int ac, char **av)
     char *buffer = read_posi(av[ac - 1]);
 
     recep_sig = 0;
-    if (error(ac, av, buffer) == 84)
+    if (error(ac, av, buffer) == 84) {
+        free(buffer);
         return 84;
+    }
     if (ac == 2)
         return (game_loop(buffer));
     if (ac == 3)

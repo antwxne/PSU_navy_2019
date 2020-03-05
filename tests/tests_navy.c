@@ -238,18 +238,260 @@ Test (transform_input, test1)
     got = transform_input("A2", got);
     cr_assert_eq(got[0], expected[0]);
     cr_assert_eq(got[1], expected[1]);
+    free(got);
 }
 
-Test (read, test_false_file)
+Test (read_posi, test_false_file)
 {
     char *got = read_posi("tests/error.txt");
 
     cr_assert_null(got);
+    free(got);
 }
 
-Test (read, test_no_file)
+Test (read_posi, test_false_file2)
+{
+    char *got = read_posi("tests/error2.txt");
+
+    cr_assert_null(got);
+    free(got);
+}
+
+Test (read_posi, test_no_file)
 {
     char *got = read_posi("tests/crash");
 
     cr_assert_null(got);
+    free(got);
+}
+
+Test (read_posi, true)
+{
+    char *got = read_posi("tests/true.txt");
+    char expected[] = "2:C1:C2\n" \
+                        "3:D4:F4\n" \
+                        "4:B5:B8\n" \
+                        "5:D7:H7";
+    cr_assert_str_eq(got, expected);
+    free(got);
+}
+
+Test (read_posi, true2)
+{
+    char *got = read_posi("tests/true2.txt");
+    char expected[] = "2:C1:C2\n" \
+                        "3:D4:F4\n" \
+                        "4:B5:B8\n" \
+                        "5:D7:H7";
+    cr_assert_str_eq(got, expected);
+    free(got);
+}
+
+Test (first_verification, true)
+{
+    int got = first_verification("2:C1:C2\n" \
+                        "3:D4:F4\n" \
+                        "4:B5:B8\n" \
+                        "5:D7:H7");
+    int expected = 0;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (first_verification, false_1)
+{
+    int got = first_verification("1:C1:C2\n" \
+                        "3:D4:F4\n" \
+                        "4:B5:B8\n" \
+                        "5:D7:H7");
+    int expected = -1;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (first_verification, false_2)
+{
+    int got = first_verification("2:C1:C2\n" \
+                        "3:D4:F4\n" \
+                        "8:B5:B8\n" \
+                        "5:D7:H7");
+    int expected = -1;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (first_verification, false_3)
+{
+    int got = first_verification("2:C1:C2\n" \
+                        "3:D4:F4\n" \
+                        "50:B5:B8\n" \
+                        "5:D7:H7");
+    int expected = -1;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (first_verification, false_4)
+{
+    int got = first_verification("2:C1:C2\n" \
+                        "A:D4:F4\n" \
+                        "4:B5:B8\n" \
+                        "5:D7:H7");
+    int expected = -1;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (second_verification, true)
+{
+    int got = second_verification("2:C1:C2\n" \
+                        "3:D4:F4\n" \
+                        "4:B5:B8\n" \
+                        "5:D7:H7");
+    int expected = 0;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (second_verification, false_1)
+{
+    int got = second_verification("2:C1:C2\n" \
+                        "2:D4:F4\n" \
+                        "4:B5:B8\n" \
+                        "5:D7:H7");
+    int expected = -1;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (second_verification, false_2)
+{
+    int got = second_verification("2:C1:C2\n" \
+                        "5:D4:F4\n" \
+                        "4:B5:B8\n" \
+                        "5:D7:H7");
+    int expected = -1;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (three_verification, true)
+{
+    int got = three_verification("2:C1:C2\n" \
+                        "3:D4:F4\n" \
+                        "4:B5:B8\n" \
+                        "5:D7:H7");
+    int expected = 0;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (three_verification, false_1)
+{
+    int got = three_verification("2:C1:C2\n" \
+                        "3:D4!F4\n" \
+                        "4:B5:B8\n" \
+                        "5:D7:H7");
+    int expected = -1;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (three_verification, false_2)
+{
+    int got = three_verification("2:C1:C2\n" \
+                        "3:D4:F4\n" \
+                        "4:B5:B8\n" \
+                        "5:D7:Z7");
+    int expected = -1;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (three_verification, false_3)
+{
+    int got = three_verification("2:C1:C2\n" \
+                        "3:D4DF4\n" \
+                        "4:B5:B8\n" \
+                        "5:D7:H7");
+    int expected = -1;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (three_verification, false_4)
+{
+    int got = three_verification("2:C1:C2\n" \
+                        "3:D4:F4\n" \
+                        "4:B9:B8\n" \
+                        "5:D7:H7");
+    int expected = -1;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (four_verification, true)
+{
+    int got = four_verification("2:C1:C2\n" \
+                        "3:D4:F4\n" \
+                        "4:B5:B8\n" \
+                        "5:D7:H7");
+    int expected = 0;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (four_verification, false_1)
+{
+    int got = four_verification("2:C1:C2\n" \
+                        "3:D4:A4\n" \
+                        "4:B5:B8\n" \
+                        "5:D7:H7");
+    int expected = -1;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (four_verification, false_3)
+{
+    int got = four_verification("2:A1:C2\n" \
+                        "3:D4:D7\n" \
+                        "4:B5:B8\n" \
+                        "5:D7:H7");
+    int expected = -1;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (four_verification, false_4)
+{
+    int got = four_verification("2:C1:C2\n" \
+                        "3:D4:D3\n" \
+                        "4:B5:B6\n" \
+                        "5:D7:H7");
+    int expected = -1;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (error, true)
+{
+    int ac = 2;
+    char *av[] = {NULL, "tests/true.txt"};
+    char *buffer = read_posi("tests/true.txt");
+    int got = error(ac, av, buffer);
+    int expected = 0;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (error, false1)
+{
+    int ac = 2;
+    char *av[] = {NULL, "tests/error3.txt"};
+    char *buffer = read_posi("tests/error3.txt");
+    int got = error(ac, av, buffer);
+    int expected = 84;
+
+    cr_assert_eq(got, expected);
 }
