@@ -29,7 +29,7 @@ int wait_connection(void);
 int error(int ac, char **av, char *buffer);
 int game_loop_2(char *map, int pid);
 int game_loop(char *map);
-int *transform_input(char *input);
+int *transform_input(char *input, int *result);
 int cat_input(char **input);
 int second_loop(int **pos, char *rd, char ***enemy);
 int loop_p1(char **board, char **enemy, int **pos, int pid);

@@ -45,6 +45,7 @@ tests_run: SRC += tests/tests_navy.c
 tests_run: SRC := $(filter-out src/main.c, $(SRC))
 tests_run: NAME := unit_tests
 tests_run:
+	make -C lib/my/
 	$(CC) -o $(NAME) $(SRC) $(LDFLAGS) -lcriterion --coverage -I./include
 	./$(NAME)
 

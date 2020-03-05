@@ -29,7 +29,7 @@ int second_loop(int **pos, char *rd, char ***enemy)
 {
     int fire;
 
-    pos[0] = transform_input(rd);
+    pos[0] = transform_input(rd, pos[0]);
     fire = send_all(pos[0], pos[2][0]);
     *enemy = update_enemy_board(*enemy, fire, pos[0]);
     usleep(10000);
