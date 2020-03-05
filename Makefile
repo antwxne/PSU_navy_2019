@@ -30,8 +30,6 @@ LDFLAGS	=	-L./lib -lmy
 
 NAME	=	navy
 
-NAME_TESTS	=	unit_tests
-
 CC	=	gcc
 
 all:	$(NAME)
@@ -43,6 +41,13 @@ $(NAME): $(OBJ)
 debug:	CFLAGS += -g3
 debug:	re
 
+tests_run: SRC += tests/tests_navy.c
+tests_run: SRC := $(filter-out src/main.c, $(SRC))
+tests_run: NAME := unit_tests
+tests_run:
+	$(CC) -o $(NAME) $(SRC) $(LDFLAGS) -lcriterion --coverage -I./include
+	./$(NAME)
+
 clean:
 	$(RM) $(OBJ)
 
@@ -50,11 +55,6 @@ fclean:	clean
 	$(RM) $(NAME)
 	$(RM) $(NAME_TESTS)
 	make fclean -C lib/my/
-
-tests_run:
-	make -C lib/my/
-	$(CC) -o $(NAME_TESTS) $(CPPFLAGS) $(SRC_TESTS) $(LDFLAGS)
-	./$(NAME_TESTS)
 
 re: fclean all
 
