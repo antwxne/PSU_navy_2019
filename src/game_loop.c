@@ -21,6 +21,14 @@ static char **set_board(char **board, char *map)
     return (board);
 }
 
+static void free_int(int **arr)
+{
+    free(arr[0]);
+    free(arr[1]);
+    free(arr[2]);
+    free(arr);
+}
+
 int game_loop_2(char *map, int pid)
 {
     char **board = set_board(create_board(), map);
@@ -36,7 +44,8 @@ int game_loop_2(char *map, int pid)
             return (84);
     }
     return_value = loop_p2(board, enemy, pos, init_connection(pid));
-    free(pos);
+    free_int(pos);
+    free(map);
     my_free_arr(board, 2);
     my_free_arr(enemy, 2);
     return (return_value);
@@ -57,7 +66,8 @@ int game_loop(char *map)
             return (84);
     }
     return_value = loop_p1(board, enemy, pos, wait_connection());
-    free(pos);
+    free_int(pos);
+    free(map);
     my_free_arr(board, 2);
     my_free_arr(enemy, 2);
     return (return_value);

@@ -49,15 +49,15 @@ int loop_p1(char **board, char **enemy, int **pos, int pid)
     while (1) {
         first_display(board, enemy);
         if (input(&rd) == 0)
-            return (0);
+            return (-1);
         if (second_loop(pos, rd, &enemy) == -1) {
             first_display(board, enemy);
-            return (other);
+            return (you);
         }
         board = waiting_action(board, pos);
         if (loose(board) == -1) {
             first_display(board, enemy);
-            return (you);
+            return (other);
         }
     }
     return (0);
@@ -73,14 +73,14 @@ int loop_p2(char **board, char **enemy, int **pos, int pid)
         board = waiting_action(board, pos);
         if (loose(board) == -1) {
             first_display(board, enemy);
-            return (you);
+            return (other);
         }
         usleep(10000);
         if (input(&rd) == 0)
-            return (0);
+            return (-1);
         if (second_loop(pos, rd, &enemy) == -1) {
             first_display(board, enemy);
-            return (other);
+            return (you);
         }
     }
     return (0);

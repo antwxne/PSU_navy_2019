@@ -50,11 +50,14 @@ int send_all(int *pos, int pid)
     sigaction(SIGUSR1, &act, NULL);
     sigaction(SIGUSR2, &act, NULL);
     pause();
-    if (recep_sig == 1)
+    if (recep_sig == 1) {
         display_hit(pos, 1);
-    else
+        return (1);
+    } else {
         display_hit(pos, 0);
-    return (recep_sig);
+        return (0);
+    }
+    return (-1);
 }
 
 char **recep_all(char **board, int *pos, int other_pid)

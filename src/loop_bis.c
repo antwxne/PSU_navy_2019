@@ -35,6 +35,6 @@ int second_loop(int **pos, char *rd, char ***enemy)
     usleep(10000);
     free(rd);
     if (loose(*enemy) == -1)
-        return (other);
+        return (-1);
     return (0);
 }
