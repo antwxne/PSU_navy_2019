@@ -15,8 +15,8 @@ static const int cols[] = {2, 4, 6, 8, 10, 12, 14, 16};
 
 int check_hit(char **board, int *pos)
 {
-    if (board[pos[0]+1][cols[pos[1]-1]] >= '2' &&
-        board[pos[0]+1][cols[pos[1]-1]] <= '5')
+    if (board[pos[1]+1][cols[pos[0]-1]] >= '2' &&
+        board[pos[1]+1][cols[pos[0]-1]] <= '5')
         return (1);
     else
         return (-1);

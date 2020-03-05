@@ -57,7 +57,7 @@ int game_loop(char *map)
             return (84);
     }
     return_value = loop_p1(board, enemy, pos, wait_connection());
-    // free(pos);
+    free(pos);
     my_free_arr(board, 2);
     my_free_arr(enemy, 2);
     return (return_value);

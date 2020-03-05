@@ -30,13 +30,13 @@ static int input(char **rd)
 {
     if (cat_input(rd) == -1) {
         free(*rd);
-        return eof;
+        return 0;
     }
     while (valid(*rd) == -1) {
         free(*rd);
         cat_input(rd);
         if (*rd == NULL)
-            return eof;
+            return 0;
         }
     return (1);
 }
@@ -44,18 +44,21 @@ static int input(char **rd)
 int loop_p1(char **board, char **enemy, int **pos, int pid)
 {
     char *rd = NULL;
-    int ret = 0;
 
     pos[2][0] = pid;
     while (1) {
         first_display(board, enemy);
-        if (input(&rd) == eof)
-            return (eof);
-        ret = second_loop(pos, rd, &board, &enemy);
-        free(rd);
-        if (ret != 0)
-            return (ret);
-        waiting_action(board, pos);
+        if (input(&rd) == 0)
+            return (0);
+        if (second_loop(pos, rd, &enemy) == -1) {
+            first_display(board, enemy);
+            return (other);
+        }
+        board = waiting_action(board, pos);
+        if (loose(board) == -1) {
+            first_display(board, enemy);
+            return (you);
+        }
     }
     return (0);
 }
@@ -63,19 +66,22 @@ int loop_p1(char **board, char **enemy, int **pos, int pid)
 int loop_p2(char **board, char **enemy, int **pos, int pid)
 {
     char *rd = NULL;
-    int ret = 0;
 
     pos[2][0] = pid;
     while (1) {
         first_display(board, enemy);
-        waiting_action(board, pos);
+        board = waiting_action(board, pos);
+        if (loose(board) == -1) {
+            first_display(board, enemy);
+            return (you);
+        }
         usleep(10000);
-        if (input(&rd) == eof)
-            return (eof);
-        ret = second_loop(pos, rd, &board, &enemy);
-        free(rd);
-        if (ret != 0)
-            return (ret);
+        if (input(&rd) == 0)
+            return (0);
+        if (second_loop(pos, rd, &enemy) == -1) {
+            first_display(board, enemy);
+            return (other);
+        }
     }
     return (0);
 }
