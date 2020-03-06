@@ -14,10 +14,11 @@ int main(int ac, char **av)
 {
     char *buffer = read_posi(av[ac - 1]);
     int end = 0;
-    sfSound **sound = my_sound();
+    sounds_t sound;
+    int err_s = my_sound(&sound);
 
     recep_sig = 0;
-    if (error(ac, av, buffer) == 84 || sound == NULL) {
+    if (error(ac, av, buffer) == 84 || err_s == -1) {
         free(buffer);
         return 84;
     }

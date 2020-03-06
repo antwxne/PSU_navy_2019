@@ -38,7 +38,7 @@ static void destroy(char *map, int **pos, char **board, char **enemy)
     my_free_arr(enemy, 2);
 }
 
-int game_loop_2(char *map, int pid, sfSound **sound)
+int game_loop_2(char *map, int pid, sounds_t sound)
 {
     char **board = set_board(create_board(), map);
     char **enemy = create_board();
@@ -55,11 +55,11 @@ int game_loop_2(char *map, int pid, sfSound **sound)
     pos[2][0] = init_connection(pid);
     return_value = loop_p2(board, enemy, pos, sound);
     destroy(map, pos, board, enemy);
-    destroy_sound(sound);
+    destroy_sound(&sound);
     return (return_value);
 }
 
-int game_loop(char *map, sfSound **sound)
+int game_loop(char *map, sounds_t sound)
 {
     char **board = set_board(create_board(), map);
     char **enemy = create_board();
@@ -76,6 +76,6 @@ int game_loop(char *map, sfSound **sound)
     pos[2][0] = wait_connection();
     return_value = loop_p1(board, enemy, pos, sound);
     destroy(map, pos, board, enemy);
-    destroy_sound(sound);
+    destroy_sound(&sound);
     return (return_value);
 }

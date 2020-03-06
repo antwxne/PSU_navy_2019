@@ -20,7 +20,7 @@ static void first_display(char **board, char **enemy)
     display_board(enemy);
 }
 
-static char **waiting_action(char **board, int **pos, sfSound **sound)
+static char **waiting_action(char **board, int **pos, sounds_t sound)
 {
     my_putstr("\nwaiting for enemy's attack...\n");
     board = recep_all(board, pos[1], pos[2][0], sound);
@@ -42,7 +42,7 @@ static int input(char **rd)
     return (1);
 }
 
-int loop_p1(char **board, char **enemy, int **pos, sfSound **sound)
+int loop_p1(char **board, char **enemy, int **pos, sounds_t sound)
 {
     char *rd = NULL;
 
@@ -63,10 +63,11 @@ int loop_p1(char **board, char **enemy, int **pos, sfSound **sound)
     return (0);
 }
 
-int loop_p2(char **board, char **enemy, int **pos, sfSound **sound)
+int loop_p2(char **board, char **enemy, int **pos, sounds_t sound)
 {
     char *rd = NULL;
 
+    sfSound_play(sound.sound[pirate]);
     while (1) {
         first_display(board, enemy);
         board = waiting_action(board, pos, sound);

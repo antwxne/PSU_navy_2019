@@ -60,19 +60,19 @@ int send_all(int *pos, int pid)
     return (-1);
 }
 
-char **recep_all(char **board, int *pos, int other_pid, sfSound **sound)
+char **recep_all(char **board, int *pos, int other_pid, sounds_t sound)
 {
     pos[0] = get_signal();
     pos[1] = get_signal();
     usleep(10000);
     if (check_hit(board, pos) == 1) {
         display_hit(pos, 1);
-        sfSound_play(sound[boom]);
+        sfSound_play(sound.sound[boom]);
         kill(other_pid, SIGUSR1);
     }
     if (check_hit(board, pos) == -1) {
         display_hit(pos, 0);
-        sfSound_play(sound[plouf]);
+        sfSound_play(sound.sound[plouf]);
         kill(other_pid, SIGUSR2);
     }
     signal(SIGUSR1, &handler2);

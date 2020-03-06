@@ -12,9 +12,15 @@
 
 int recep_sig;
 
+typedef struct my_sounds {
+    sfSound **sound;
+    sfSoundBuffer **buff;
+} sounds_t;
+
 typedef enum sounds {
     boom,
     plouf,
+    pirate,
 } sounds_e;
 
 typedef enum player {
@@ -28,17 +34,17 @@ int valid(char *boat);
 int take_colone(char *boat);
 int take_line(char *boat);
 int send_all(int *pos, int pid);
-char **recep_all(char **board, int *pos, int other_pid, sfSound **sound);
+char **recep_all(char **board, int *pos, int other_pid, sounds_t sound);
 int init_connection(int pid);
 int wait_connection(void);
 int error(int ac, char **av, char *buffer);
-int game_loop_2(char *map, int pid, sfSound **sound);
-int game_loop(char *map, sfSound **sound);
+int game_loop_2(char *map, int pid, sounds_t sound);
+int game_loop(char *map, sounds_t sound);
 int *transform_input(char *input, int *result);
 int cat_input(char **input);
 int second_loop(int **pos, char *rd, char ***enemy);
-int loop_p1(char **board, char **enemy, int **pos, sfSound **sound);
-int loop_p2(char **board, char **enemy, int **poss, sfSound **sound);
+int loop_p1(char **board, char **enemy, int **pos, sounds_t sound);
+int loop_p2(char **board, char **enemy, int **pos, sounds_t sound);
 char *read_posi(char *filepath);
 int first_verification(char *buffer);
 int second_verification(char *buffer);
@@ -51,7 +57,7 @@ char **update_enemy_board(char **enemy, int hit, int *pos);
 void my_send_sig(int data, int pid);
 int check_hit(char **board, int *pos);
 int loose(char **boat);
-sfSound **my_sound(void);
-void destroy_sound(sfSound **sound);
+int my_sound(sounds_t *element);
+void destroy_sound(sounds_t *sound);
 
 #endif /* !NAVY_H_ */
