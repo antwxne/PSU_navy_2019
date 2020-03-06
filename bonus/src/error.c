@@ -8,7 +8,7 @@
 #include <stddef.h>
 #include "navy.h"
 
-int error(int ac, char **av, char *buffer)
+int error(int ac, char *buffer)
 {
     if (ac < 2 && ac > 3)
         return (84);

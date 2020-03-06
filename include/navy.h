@@ -26,7 +26,7 @@ int send_all(int *pos, int pid);
 char **recep_all(char **board, int *pos, int other_pid);
 int init_connection(int pid);
 int wait_connection(void);
-int error(int ac, char **av, char *buffer);
+int error(int ac, char *buffer);
 int game_loop_2(char *map, int pid);
 int game_loop(char *map);
 int *transform_input(char *input, int *result);

@@ -18,7 +18,7 @@ int main(int ac, char **av)
     int err_s = my_sound(&sound);
 
     recep_sig = 0;
-    if (error(ac, av, buffer) == 84 || err_s == -1) {
+    if (error(ac, buffer) == 84 || err_s == -1) {
         free(buffer);
         return 84;
     }

@@ -15,7 +15,7 @@ int main(int ac, char **av)
     int end = 0;
 
     recep_sig = 0;
-    if (error(ac, av, buffer) == 84) {
+    if (error(ac, buffer) == 84) {
         free(buffer);
         return 84;
     }
