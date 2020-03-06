@@ -37,11 +37,6 @@ char **update_my_board(char **boat, int *pos)
 
 char **update_enemy_board(char **enemy, int hit, int *pos)
 {
-    int i = 0;
-
-    for (; i <= 7; i++)
-        if (let[i] == pos[0])
-            break;
     if (hit == 1)
         enemy[pos[1]+1][cols[pos[0]-1]] = 'x';
     else

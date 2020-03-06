@@ -59,5 +59,6 @@ int check_hit(char **board, int *pos);
 int loose(char **boat);
 int my_sound(sounds_t *element);
 void destroy_sound(sounds_t *sound);
+char **set_board(char **board, char *map);  
 
 #endif /* !NAVY_H_ */

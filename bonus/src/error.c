@@ -10,17 +10,17 @@
 
 int error(int ac, char *buffer)
 {
-    if (ac < 2 && ac > 3)
+    char **board;
+    
+    if (ac < 2 || ac > 3)
         return (84);
-    if (buffer == NULL)
+    if (buffer == NULL
+    || first_verification(buffer) == -1 || second_verification(buffer) == -1
+    || three_verification(buffer) == -1 || four_verification(buffer) == -1)
         return (84);
-    if (first_verification(buffer) == -1)
+    board = (set_board(create_board(), buffer));
+    if (board == NULL)
         return (84);
-    if (second_verification(buffer) == -1)
-        return (84);
-    if (three_verification(buffer) == -1)
-        return (84);
-    if (four_verification(buffer) == -1)
-        return (84);
+    my_free_arr(board, 2);
     return (0);
 }
