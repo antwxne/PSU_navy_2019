@@ -477,9 +477,8 @@ Test (four_verification, false_4)
 Test (error, true)
 {
     int ac = 2;
-    char *av[] = {NULL, "tests/true.txt"};
     char *buffer = read_posi("tests/true.txt");
-    int got = error(ac, av, buffer);
+    int got = error(ac, buffer);
     int expected = 0;
 
     cr_assert_eq(got, expected);
@@ -488,9 +487,8 @@ Test (error, true)
 Test (error, false1)
 {
     int ac = 2;
-    char *av[] = {NULL, "tests/error3.txt"};
     char *buffer = read_posi("tests/error3.txt");
-    int got = error(ac, av, buffer);
+    int got = error(ac, buffer);
     int expected = 84;
 
     cr_assert_eq(got, expected);
