@@ -10,7 +10,6 @@
 #include <stdbool.h>
 #include "navy.h"
 
-static const char let[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 static const int cols[] = {2, 4, 6, 8, 10, 12, 14, 16};
 
 int check_hit(char **board, int *pos)
