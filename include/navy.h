@@ -46,5 +46,6 @@ char **update_enemy_board(char **enemy, int hit, int *pos);
 void my_send_sig(int data, int pid);
 int check_hit(char **board, int *pos);
 int loose(char **boat);
+char **set_board(char **board, char *map);
 
 #endif /* !NAVY_H_ */

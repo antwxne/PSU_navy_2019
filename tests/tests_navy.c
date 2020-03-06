@@ -477,9 +477,8 @@ Test (four_verification, false_4)
 Test (error, true)
 {
     int ac = 2;
-    char *av[] = {NULL, "tests/true.txt"};
     char *buffer = read_posi("tests/true.txt");
-    int got = error(ac, av, buffer);
+    int got = error(ac, buffer);
     int expected = 0;
 
     cr_assert_eq(got, expected);
@@ -488,10 +487,69 @@ Test (error, true)
 Test (error, false1)
 {
     int ac = 2;
-    char *av[] = {NULL, "tests/error3.txt"};
     char *buffer = read_posi("tests/error3.txt");
-    int got = error(ac, av, buffer);
+    int got = error(ac, buffer);
     int expected = 84;
 
     cr_assert_eq(got, expected);
+}
+
+Test (error, false2)
+{
+    int ac = 1;
+    char *buffer = NULL;
+    int got = error(ac, buffer);
+    int expected = 84;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (error, false3)
+{
+    int ac = 4;
+    char *buffer = NULL;
+    int got = error(ac, buffer);
+    int expected = 84;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (error, false4)
+{
+    int ac = 2;
+    char *buffer = read_posi("tests/error4.txt");
+    int got = error(ac, buffer);
+    int expected = 84;
+
+    cr_assert_eq(got, expected);
+}
+
+Test (set_board, test1)
+{
+    char **board = create_board();
+    char buff[] = "2:C1:C2\n" \
+                    "3:D4:F4\n" \
+                    "4:B5:B8\n" \
+                    "5:D7:H7";
+    char *expected[] = {" |A B C D E F G H", "-+---------------",
+    "1|. . 2 . . . . .", "2|. . 2 . . . . .", "3|. . . . . . . .",
+"4|. . . 3 3 3 . .", "5|. 4 . . . . . .", "6|. 4 . . . . . .", 
+"7|. 4 . 5 5 5 5 5", "8|. 4 . . . . . .", NULL};
+    
+    board = set_board(board, buff);
+    for (int i = 0; board[i] != NULL; i++)
+        cr_assert_str_eq(board[i], expected[i]);
+    my_free_arr(board, 2);
+}
+
+Test (set_board, test_error)
+{
+    char **board = create_board();
+    char buff[] = "2:C1:C2\n" \
+                    "3:C1:C3\n" \
+                    "4:B5:B8\n" \
+                    "5:D7:H7";
+    
+    board = set_board(board, buff);
+    cr_assert_null(board);
 }
