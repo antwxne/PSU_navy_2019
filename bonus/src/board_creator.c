@@ -19,7 +19,7 @@ static void red (char x)
 
 static void blue (char o)
 {
-    my_printf("\033[1;34m");
+    my_printf("\033[1;36m");
     my_putchar(o);
     my_printf("\033[0m");
 }

@@ -34,7 +34,7 @@ static void display_hit(int *pos, int hit)
     if (hit == 1)
         my_putstr("  \033[1;31mhit\n\033[0m");
     else
-        my_putstr("  \033[1;32mmissed\n\033[0m");
+        my_putstr("  \033[1;36mmissed\n\033[0m");
 }
 
 int send_all(int *pos, int pid)
