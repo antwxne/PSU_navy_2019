@@ -7,11 +7,12 @@
 
 #include <stddef.h>
 #include "navy.h"
+#include "my.h"
 
 int error(int ac, char *buffer)
 {
     char **board;
-    
+
     if (ac < 2 || ac > 3)
         return (84);
     if (buffer == NULL

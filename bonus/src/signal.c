@@ -21,7 +21,7 @@ static void handler(int sig, siginfo_t *info, void *ucontext)
     kill(info->si_pid, SIGUSR1);
 }
 
-static void handler_return(int sig, siginfo_t *info, void *ucontext)
+static void handler_ret(int sig, siginfo_t *info, void *ucontext)
 {
     if (sig == SIGUSR1)
         recep_sig += 1;
@@ -53,7 +53,7 @@ void my_send_sig(int data, int pid)
     struct sigaction act = {0};
 
     act.sa_flags = SA_SIGINFO;
-    act.sa_sigaction = &handler_return;
+    act.sa_sigaction = &handler_ret;
     sigemptyset(&act.sa_mask);
     recep_sig = 0;
     sigaction(SIGUSR1, &act, NULL);

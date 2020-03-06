@@ -533,9 +533,9 @@ Test (set_board, test1)
                     "5:D7:H7";
     char *expected[] = {" |A B C D E F G H", "-+---------------",
     "1|. . 2 . . . . .", "2|. . 2 . . . . .", "3|. . . . . . . .",
-"4|. . . 3 3 3 . .", "5|. 4 . . . . . .", "6|. 4 . . . . . .", 
+"4|. . . 3 3 3 . .", "5|. 4 . . . . . .", "6|. 4 . . . . . .",
 "7|. 4 . 5 5 5 5 5", "8|. 4 . . . . . .", NULL};
-    
+
     board = set_board(board, buff);
     for (int i = 0; board[i] != NULL; i++)
         cr_assert_str_eq(board[i], expected[i]);
@@ -549,7 +549,7 @@ Test (set_board, test_error)
                     "3:C1:C3\n" \
                     "4:B5:B8\n" \
                     "5:D7:H7";
-    
+
     board = set_board(board, buff);
     cr_assert_null(board);
 }
@@ -571,7 +571,7 @@ Test (check_hit, test_false)
 {
     char *board[] = {" |A B C D E F G H", "-+---------------",
         "1|. . 2 . . . . .", "2|. . 2 . . . . .", "3|. . . . . . . .",
-        "4|. . . 3 3 3 . .", "5|. 4 . . . . . .", "6|. 4 . . . . . .", 
+        "4|. . . 3 3 3 . .", "5|. 4 . . . . . .", "6|. 4 . . . . . .",
         "7|. 4 . 5 5 5 5 5", "8|. 4 . . . . . .", NULL};
     int pos[] = {1, 1};
     int got =  check_hit(board, pos);
@@ -591,7 +591,7 @@ Test (update_my_board, test_hit)
     char **got = update_my_board(board, pos);
     char *expected[] = {" |A B C D E F G H", "-+---------------",
         "1|. . x . . . . .", "2|. . 2 . . . . .", "3|. . . . . . . .",
-        "4|. . . 3 3 3 . .", "5|. 4 . . . . . .", "6|. 4 . . . . . .", 
+        "4|. . . 3 3 3 . .", "5|. 4 . . . . . .", "6|. 4 . . . . . .",
         "7|. 4 . 5 5 5 5 5", "8|. 4 . . . . . .", NULL};
     for (int i = 0; got[i] != NULL; i++)
         cr_assert_str_eq(got[i], expected[i]);
@@ -609,7 +609,7 @@ Test (update_my_board, test_miss)
     char **got = update_my_board(board, pos);
     char *expected[] = {" |A B C D E F G H", "-+---------------",
         "1|o . 2 . . . . .", "2|. . 2 . . . . .", "3|. . . . . . . .",
-        "4|. . . 3 3 3 . .", "5|. 4 . . . . . .", "6|. 4 . . . . . .", 
+        "4|. . . 3 3 3 . .", "5|. 4 . . . . . .", "6|. 4 . . . . . .",
         "7|. 4 . 5 5 5 5 5", "8|. 4 . . . . . .", NULL};
     for (int i = 0; got[i] != NULL; i++)
         cr_assert_str_eq(got[i], expected[i]);
@@ -628,7 +628,7 @@ Test (update_enemy_board, test_hit)
     char **got = update_enemy_board(board, hit, pos);
     char *expected[] = {" |A B C D E F G H", "-+---------------",
         "1|. . x . . . . .", "2|. . 2 . . . . .", "3|. . . . . . . .",
-        "4|. . . 3 3 3 . .", "5|. 4 . . . . . .", "6|. 4 . . . . . .", 
+        "4|. . . 3 3 3 . .", "5|. 4 . . . . . .", "6|. 4 . . . . . .",
         "7|. 4 . 5 5 5 5 5", "8|. 4 . . . . . .", NULL};
     for (int i = 0; got[i] != NULL; i++)
         cr_assert_str_eq(got[i], expected[i]);
@@ -647,7 +647,7 @@ Test (update_enemy_board, test_miss)
     char **got = update_enemy_board(board, hit, pos);
     char *expected[] = {" |A B C D E F G H", "-+---------------",
         "1|o . 2 . . . . .", "2|. . 2 . . . . .", "3|. . . . . . . .",
-        "4|. . . 3 3 3 . .", "5|. 4 . . . . . .", "6|. 4 . . . . . .", 
+        "4|. . . 3 3 3 . .", "5|. 4 . . . . . .", "6|. 4 . . . . . .",
         "7|. 4 . 5 5 5 5 5", "8|. 4 . . . . . .", NULL};
     for (int i = 0; got[i] != NULL; i++)
         cr_assert_str_eq(got[i], expected[i]);

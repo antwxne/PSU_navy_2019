@@ -19,7 +19,8 @@ SRC	= 	src/board_creator.c	\
 		src/replace.c		\
 		src/signal.c 		\
 		src/toucher.c		\
-		src/create_sound.c \
+		src/create_sound.c 	\
+		src/display_board.c \
 
 OBJ	=	$(SRC:.c=.o)
 

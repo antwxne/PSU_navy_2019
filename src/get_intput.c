@@ -15,7 +15,7 @@ static const char let[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 int *transform_input(char *input, int *result)
 {
     int i = 0;
-  
+
     if (input[0] >= 'A' && input[0] <= 'H') {
         for (; let[i] != input[0]; i++);
         result[0] = (i+1);
