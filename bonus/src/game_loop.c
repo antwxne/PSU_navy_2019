@@ -10,7 +10,7 @@
 #include "navy.h"
 #include "my.h"
 
-static char **set_board(char **board, char *map)
+char **set_board(char **board, char *map)
 {
     int k = 0;
 

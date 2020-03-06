@@ -12,7 +12,7 @@
 #include "navy.h"
 #include "my.h"
 
-static void handler_connect(int sig, siginfo_t *info, void*ucontext)
+static void handler_connect(int sig, siginfo_t *info, void *ucontext)
 {
     if (sig == SIGUSR1) {
         recep_sig = info->si_pid;
