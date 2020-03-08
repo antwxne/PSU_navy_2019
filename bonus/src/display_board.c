@@ -8,18 +8,18 @@
 #include <stdlib.h>
 #include <my.h>
 
-static void red (char x)
+static void red(char x)
 {
-    my_printf("\033[1;31m");
+    my_putstr("\033[1;31m");
     my_putchar(x);
-    my_printf("\033[0m");
+    my_putstr("\033[0m");
 }
 
-static void blue (char o)
+static void blue(char o)
 {
-    my_printf("\033[1;36m");
+    my_putstr("\033[1;36m");
     my_putchar(o);
-    my_printf("\033[0m");
+    my_putstr("\033[0m");
 }
 
 void display_board(char **board)

@@ -31,10 +31,15 @@ static void handler2(int sig)
 static void display_hit(int *pos, int hit)
 {
     my_printf("%c%c:", let[pos[0]-1], pos[1] + '0');
-    if (hit == 1)
-        my_putstr("  \033[1;31mhit\n\033[0m");
-    else
-        my_putstr("  \033[1;36mmissed\n\033[0m");
+    if (hit == 1) {
+        my_putstr("\033[1;31m");
+        my_putstr("  hit\n");
+        my_putstr("\033[0m");
+    } else {
+        my_putstr("\033[1;36m");
+        my_putstr("  missed\n");
+        my_putstr("\033[0m");
+    }
 }
 
 int send_all(int *pos, int pid)

@@ -18,7 +18,7 @@ int main(int ac, char **av)
 
     recep_sig = 0;
     if (error(ac, read_posi(av[ac -1])) == 84 || err_s == -1)
-        return 84;
+        return (84);
     if (ac == 2)
         end = game_loop(read_posi(av[ac -1]), sound);
     if (ac == 3)
