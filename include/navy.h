@@ -10,7 +10,7 @@
 
 #include <stdbool.h>
 
-int recep_sig;
+static int recep_sig;
 
 typedef enum player {
     you,
